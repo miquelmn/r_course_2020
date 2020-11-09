@@ -1,0 +1,71 @@
+---
+title: "Sessió 4"
+author: "Miquel Miró Nicolau"
+date: "6/11/2020"
+output: html_document
+---
+
+# Sessió 4 - Markdown
+
+En aquesta sessió llegirem i estudiarem l'ús de Markdown amb el dataset *iris*. Aquesta sessió forma part d'un curs de la **UIB**. Aquest dataset és el famós dataset den Anderson.
+
+## Llegim les dades
+
+En aquesta secció llegim les dades d'*iris*.
+
+```{r}
+data(iris)
+summary(iris)
+```
+
+Espècie    | Número de mostres
+---------- | -----------------
+Setosa     | 50
+Versicolor | 50
+Virginica  | 50
+
+## Mitjana de les plantes segons tipus
+
+Volem saber la mitjana de l'amplada del sepal de les plantes setosas
+
+```{r}
+mean(iris[iris$Species == "setosa", ]$Sepal.Width)
+```
+
+***
+
+Aqui volem saber la mitjana de l'amplada del sepal de les plantes *versicolor*
+
+```{r}
+mean(iris[iris$Species == "versicolor", ]$Sepal.Width)
+```
+Les mitjanes per espècie són les següents:
+
+1. Amplada de la **setosa**: 3.428
+2. Amplada de la **versicolor**: 2.77
+
+### Maxims de les amplades
+
+Ens interessa saber quín és el màxim segons el tipus de planta
+
+```{r}
+max(iris[iris$Species == "virginica", ]$Sepal.Width)
+```
+
+La mida màxima per les *virginica* és 3.8 
+
+> Avui fa bon dia per les plantes
+
+## Gràfic 
+
+Farem un gràfic amb la mida del sepal de cada mostra
+
+```{r}
+plot(iris$Sepal.Width)
+```
+```{r}
+a = 44
+
+a *5
+```
+

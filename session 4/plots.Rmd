@@ -1,0 +1,132 @@
+---
+title: "Gràfics"
+author: "Miquel Miró Nicolau"
+date: "6/11/2020"
+output: html_document
+---
+
+## Gràfic simple
+
+```{r}
+x = seq(1, 5)
+plot(x)
+```
+
+### Aplicam funcions
+
+```{r}
+plot(x^5)
+```
+
+## Gràfic comparatiu
+
+Gràfic per comparar dos vectors
+
+```{r}
+preu_cotxe = c(7000,5000,15000, 25000, 17850)
+cavalls_cotxe = c(75, 60, 120, 140, 125)
+
+plot(cavalls_cotxe, preu_cotxe)
+```
+
+```{r}
+plot(cavalls_cotxe^2, preu_cotxe)
+```
+
+## Gràfics de funcions
+
+El resultats sempre està en el rang (0, 1)
+```{r}
+plot(sqrt)
+```
+
+```{r}
+plot(seq(0, 20, 0.01), sqrt(seq(0, 20, 0.01)))
+```
+
+### Títol
+
+```{r}
+plot(seq(0, 20, 0.01), sqrt(seq(0, 20, 0.01)), main="Arrel Quadrada")
+```
+
+### Eixos ordenades i absises
+
+```{r}
+plot(seq(0, 20, 0.01), sqrt(seq(0, 20, 0.01)), main="Arrel Quadrada", xlab = "x")
+```
+
+```{r}
+plot(seq(0, 20, 1), sqrt(seq(0, 20, 1)), main="Arrel Quadrada",xlab = "x", ylab = "Arrel quadra de x")
+```
+
+## Diferents tipus de punts
+
+```{r}
+plot(seq(0, 20, 1), sqrt(seq(0, 20, 1)), main="Arrel Quadrada",xlab = "x", ylab = "Arrel quadra de x", pch = 20)
+```
+
+## Colors
+
+Colors disponibles : http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+```{r}
+plot(seq(0, 20, 1), sqrt(seq(0, 20, 1)), main="Arrel Quadrada",xlab = "x", ylab = "Arrel quadra de x", pch = 20, col="blue")
+```
+
+## Limitam els eixos
+
+```{r}
+plot(seq(0, 20, 1), sqrt(seq(0, 20, 1)), main="Arrel Quadrada",xlab = "x", ylab = "Arrel quadra de x", pch = 20, col="blue", xlim=c(5, 10), ylim=c(2, 3))
+
+```
+
+## Gràfics amb línies i llegenda
+
+Afegim més d'una línia, punts i llegenda 
+
+```{r}
+plot(seq(0, 20, 0.5), sqrt(seq(0, 20, 0.5)), main="Arrel Quadrada",xlab = "x", ylab = "Arrel quadra de x", pch = 20, col="blue", type='l')
+
+points(0, 1, col="red", pch = 20)
+points(c(1,1), c(0, sqrt(20)), col="green", type='l')
+points(c(0, 10, 20), c(2, 4, 0), col="darkorchid", type='l')
+
+legend("right", legend=c("Arrel quadrada", "Línia", "Punt", "Diagonal"), col=c("blue", "green", "red", "darkorchid"), lwd=c(1, 1 ,1, 1))
+```
+
+## Histograma
+
+```{r}
+hist(sqrt(seq(0, 20, 0.5)), col=c("blue", "red", "blue", "red", "blue", "red", "blue", "red", "blue"), xlab = "Bins de SQRT")
+```
+
+## Gràfic de barres
+
+Presentam un nou tipus de gràfic un gràfic de barres. Per emprar-ho primerament cream un dataframe
+
+```{r}
+sexe = c("H", "D", "H", "H")
+edat = c(17, 25, 47, 58)
+germans = c(1, 0 , 0 ,2 )
+
+df.gent = data.frame(sexe, edat, germans)
+df.gent$Altura = c(175, 185, 162, 190)
+```
+
+Una vegada tenim les dades de mostra cream el gràfic
+
+```{r}
+barplot(df.gent$Altura, names.arg = 1:length(df.gent$Altura), col="red", main="Altura")
+```
+
+## Gràfics de tarta
+
+Mostram un nou tipus de gràfic, un **gràfic de tarta**
+
+```{r}
+aparacions = c(15, 10, 10 , 12)
+etiquetes = c("Patates", "Perritos", "Gelats", "Hamburguesses")
+
+pie(aparacions, etiquetes, main="Ventes McDonalds", col=c("red", "blue", "green", "pink"), border=0)
+```
+
