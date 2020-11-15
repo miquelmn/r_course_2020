@@ -1,0 +1,60 @@
+---
+title: "Freqüències"
+author: "Miquel Miró Nicolau"
+date: "13/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Freqüències
+
+Volem estudiar les freqüències en un dataset de vídeojocs.
+
+### Llegir dades
+Primerament llegirem les dades des del fitxer. Per fer-ho emprarem la funció ``read.csv``. Guardarem el resultat a la variable ``df.vg``
+
+```{r}
+df.vg = read.csv("vgsales.csv", header = TRUE, sep=",")
+unique(df.vg$Platform)
+```
+
+Volem saber com són les dades per aquest motiu emprarem la funció summary.
+
+```{r}
+summary(df.vg)
+```
+
+Observam que les característiques n'hi ha de numèriques  i n'hi que no ho són. Les que no ho són s'anomen factors, d'elles podem cercar les freqüències absolutes. En aquest exemple ho farem de les plataformes.
+
+```{r}
+freq_abs = table(df.vg$Platform)
+freq_abs
+```
+```{r}
+freq_rel = prop.table(freq_abs)
+as.vector(freq_rel) * 100
+```
+```{r}
+labels(freq_rel)
+```
+```{r}
+barplot(freq_rel)
+```
+```{r}
+barplot(cumsum(as.vector(freq_rel)))
+```
+
+## Taules de probabilitat 2D
+
+```{r}
+taula_abs_2d = table(df.vg$Platform, df.vg$Genre)
+taula_abs_2d
+```
+
+```{r}
+prop.table(taula_abs_2d) * 100
+```
+

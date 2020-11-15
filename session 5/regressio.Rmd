@@ -1,0 +1,54 @@
+---
+title: "Regressio"
+author: "Miquel Miró Nicolau"
+date: "13/11/2020"
+output: html_document
+---
+
+En aquest document farem un primer ús de la regressió lineal simple (SLR, per l'anglès *Simple linear regression*). Aquesta tècnica ens permet cercar dependències lineals entre
+dues variables
+
+## Dades
+
+Primerament cream un *dataframe* per provar la SLR. En aquest cas crearem un dataset amb dues característiques, el pes i l'altura.
+
+```{r}
+pes = c(75, 80, 42, 56, 104)
+altura = c(180, 175, 150, 160, 200)
+
+persones = data.frame(pes, altura)
+persones
+```
+
+## Plot
+
+Una vegada que tenim les dades podem fer un gràfic que ens permeti observar a simple vista si hi ha, o no, una dependència lineal entre les dues variables.
+
+```{r}
+plot(persones$pes, persones$altura)
+```
+
+El gràfic anterior ens permet observar que una major altura suposa un major pes, per tant, en aquest cas, podem afirmar que una de les condicions per poder fer una regressió lineal simple es compleix.
+
+## SLR
+
+Realitzam la regressió lineal amb la comanda ``lm``.
+
+```{r}
+model = lm(persones$altura ~ persones$pes)
+model
+```
+Observam amb el resultat que s'ha creat un model per prediure l'altura de les persones amb la seqüent equació ``Altura = 115 + 0.799*pes``. Podem fer un gràfic a on s'observi el model i les dades
+
+```{r}
+plot(persones)
+abline(model)
+```
+
+FInalment volem obtenir una mètrica númerica de la qualitat del model proposat. Per obtenir-la emprarem la funció summary del model.
+
+```{r}
+summary(model)
+```
+
+La mètrica que ens interessa és la *Multiple R-squared*, sabem que el valor màxim d'aquesta mètrica és 1 i indica el millor model. En el nostre cas, ja que el valor és de 0.9714, podem afirmar que és un bon model
